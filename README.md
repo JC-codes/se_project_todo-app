@@ -1,9 +1,12 @@
 # Simple Todo App
 
 Welcome to my app, simply put it is a list of reminders of things needing completed with optional due dates.
+Welcome to my app, simply put it is a list of reminders of things needing completed with optional due dates.
 
 ## Functionality
 
+You are able to add and remove any items you need.
+As well you can include a required or recommended due.
 You are able to add and remove any items you need.
 As well you can include a required or recommended due.
 
