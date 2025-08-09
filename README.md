@@ -1,17 +1,20 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+Welcome to my app, simply put it is a list of reminders of things needing completed with optional due dates.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+You are able to add and remove any items you need.
+As well you can include a required or recommended due.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+-Refactored using OOP
+-Updated directory stucture using JS modules
+![alt text](images/ToDoApp.png)
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+- (https://jc-codes.github.io/se_project_todo-app/)
