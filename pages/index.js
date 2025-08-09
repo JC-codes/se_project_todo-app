@@ -22,8 +22,6 @@ const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");
   const todoElement = todo.getView();
   return todoElement;
-
-  return todoElement;
 };
 
 addTodoButton.addEventListener("click", () => {

@@ -44,12 +44,14 @@ class Todo {
           day: "numeric",
         }
       )}`;
-
-      this._generateCheckboxElement();
-      this._setEventListeners();
-
-      return this._todoElement;
+    } else {
+      this._todoDate.textContent = "";
     }
+
+    this._generateCheckboxElement();
+    this._setEventListeners();
+
+    return this._todoElement;
   }
 }
 
