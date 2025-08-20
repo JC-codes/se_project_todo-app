@@ -8,15 +8,30 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-const addTodoPopupEL = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopupEL.querySelector(".popup__form");
-const addTodoCloseBtn = addTodoPopupEL.querySelector(".popup__close");
+const addTodoPopupEl = document.querySelector("#add-todo-popup");
+const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
 const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (inputValues) => {
+    const { name, date } = inputValues;
+    let todoDate = "";
+    if (date) {
+      todoDate = new Date(date);
+      todoDate.setMinutes(todoDate.getMinutes() + todoDate.getTimezoneOffset());
+    }
+
+    const id = uuidv4();
+
+    const values = { id, name, date: todoDate };
+    const todo = generateTodo(values);
+    todosList.append(todo);
+
+    addTodoPopup.close();
+  },
 });
+
 addTodoPopup.setEventListeners();
 
 const section = new Section({
@@ -30,32 +45,16 @@ const section = new Section({
 
 section.renderItems();
 
+const generateTodo = (data) => {
+  const todo = new Todo(data, "#todo-template");
+  const todoElement = todo.getView();
+  return todoElement;
+};
+
 addTodoButton.addEventListener("click", () => {
   newTodoValidator.resetValidation();
   addTodoForm.reset();
   addTodoPopup.open();
-});
-
-addTodoCloseBtn.addEventListener("click", () => {
-  addTodoPopup.close();
-});
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  let date = "";
-  if (dateInput) {
-    date = new Date(dateInput);
-    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-  }
-  const id = uuidv4();
-
-  const values = { id, name, date };
-  section.addItem(values);
-
-  addTodoPopup.close();
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
