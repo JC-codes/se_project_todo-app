@@ -11,12 +11,13 @@ class Section {
       if (this._container) {
         this._container.append(todoElement);
       } else {
-        console.error("Container not found:", this._container);
+        console.error("Container not found for selector:", containerSelector);
       }
     });
   }
 
   addItem(item) {
+    this._items.push(item);
     const todoElement = this._renderer(item);
     if (this._container) {
       this._container.append(todoElement);

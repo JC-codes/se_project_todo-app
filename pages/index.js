@@ -21,13 +21,15 @@ const addTodoPopup = new PopupWithForm({
     const { name, date } = inputValues;
     let todoDate = "";
     if (date) {
-      todoDate = new Date(date);
-      todoDate.setMinutes(todoDate.getMinutes() + todoDate.getTimezoneOffset());
+      const dateObj = new Date(date);
+      dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+      todoDate = dateObj.toISOString();
     }
 
     const id = uuidv4();
 
     const values = { id, name, date: todoDate };
+    section.items.push(values);
     const todo = generateTodo(values);
     todosList.append(todo);
     todoCounter.updateTotal(true);
@@ -77,8 +79,8 @@ const generateTodo = (data) => {
 };
 
 addTodoButton.addEventListener("click", () => {
-  newTodoValidator.resetValidation();
   addTodoForm.reset();
+  newTodoValidator.resetValidation();
   addTodoPopup.open();
 });
 
