@@ -7,22 +7,19 @@ class Section {
 
   renderItems() {
     this._items.forEach((item) => {
-      const todoElement = this._renderer(item);
-      if (this._container) {
-        this._container.append(todoElement);
-      } else {
-        console.error("Container not found for selector:", containerSelector);
-      }
+      this.addItem(item);
     });
   }
 
   addItem(item) {
-    this._items.push(item);
-    const todoElement = this._renderer(item);
+    const element = this._renderer(item);
     if (this._container) {
-      this._container.append(todoElement);
+      this._container.append(element);
     } else {
-      console.error("Container not found:", this._container);
+      console.error(
+        "Container not found for selector:",
+        this._container?.selector || "Unknown selector"
+      );
     }
   }
 }
