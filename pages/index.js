@@ -56,10 +56,9 @@ function handleTodoDelete() {
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    const todoElement = generateTodo(item);
-    todosList.append(todoElement);
+    return generateTodo(item);
   },
-  container: todosList,
+  containerSelector: ".todos__list",
 });
 
 const generateTodo = (data) => {
